@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500&family=Poppins:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+// variables
+$poppins-font: 'Poppins',
+sans-serif;
+$merriweather-font:'Merriweather Sans',
+sans-serif;
+$theme-color: #FC5130;
+$light-font-color: #050401;
+$light-font-color: #FFFAFF;
+$light-bg-color: #FFFAFF;
+$dark-bg-color: #303036;
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $poppins-font;
+}
+
+.navbar {
+    .navbar-brand {
+        font-family: $merriweather-font;
+    }
+}

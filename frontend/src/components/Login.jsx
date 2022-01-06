@@ -59,7 +59,7 @@ function Login({ userLoginSuccess, userLogout, ...props }) {
     <div className="container mt-5 pt-5">
       <div className="row">
         {props.location.state && (
-          <div className="col-12">
+          <div className="col-lg-6 mx-auto">
             <div
               className={"alert" + " alert-" + props.location.state.type}
               role="alert"
