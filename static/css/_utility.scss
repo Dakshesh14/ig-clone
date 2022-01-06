@@ -5,15 +5,16 @@ sans-serif;
 $merriweather-font:'Merriweather Sans',
 sans-serif;
 $theme-color: #FC5130;
-$light-font-color: #050401;
-$light-font-color: #FFFAFF;
-$light-bg-color: #FFFAFF;
-$dark-bg-color: #303036;
+$font-color: #050401;
+$bg-color: #f8f8f8;
+$overlay-color: #FFFFFF;
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: $poppins-font;
+    color: $font-color;
+    background-color: $bg-color;
 }
 
 .navbar {
