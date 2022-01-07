@@ -1,3 +1,33 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import (
+    Post,
+    PostImage,
+    PostComment,
+)
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    '''Admin View for Post'''
+
+    class PostInline(admin.StackedInline):
+        model = PostImage
+        extra = 1
+        min_num = 1
+        max_num = 10
+        can_delete = False
+
+    list_display = ('title',)
+    list_display_links = ('title',)
+    inlines = [
+        PostInline,
+    ]
+
+
+@admin.register(PostComment)
+class PostCommentAdmin(admin.ModelAdmin):
+    '''Admin View for PostComment'''
+
+    list_display = ('post',)
+    list_display_links = ('post',)

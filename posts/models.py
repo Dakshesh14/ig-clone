@@ -19,9 +19,10 @@ class Post(models.Model):
     title = models.CharField(max_length=75)
     posted_on = models.DateTimeField(auto_now_add=True)
 
-    liked_by = models.ManyToManyField(
+    likes = models.ManyToManyField(
         User,
-        related_name='likes'
+        related_name='likes',
+        blank=True,
     )
 
     class Meta:
@@ -32,10 +33,10 @@ class Post(models.Model):
         return naturaltime(self.posted_on)
 
     def get_likes(self):
-        return self.liked_by.count()
+        return self.likes.count()
 
     def __str__(self):
-        return self
+        return self.title
 
 
 class PostImage(models.Model):
@@ -50,7 +51,7 @@ class PostImage(models.Model):
 
 
 class PostComment(models.Model):
-    """This model is for comment in lecture model. This comment will also have a parent of self if there's any parent comment."""
+    """This model is for comment in post model. This comment will also have a parent of self if there's any parent comment."""
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.CharField(max_length=255)
@@ -69,7 +70,10 @@ class PostComment(models.Model):
     )
 
     likes = models.ManyToManyField(
-        User, blank=True, related_name='comment_likes')
+        User,
+        blank=True,
+        related_name='comment_likes'
+    )
 
     posted_on = models.DateTimeField(auto_now_add=True)
     is_edited = models.BooleanField(default=False)
@@ -83,8 +87,8 @@ class PostComment(models.Model):
             return queryset
 
     class Meta:
-        verbose_name = 'Lecture Comment'
-        verbose_name_plural = 'Lecture Comments'
+        verbose_name = 'Post Comment'
+        verbose_name_plural = 'Post Comments'
 
     objects = models.Manager()
     parent_objects = LectureCommentModelManager()
