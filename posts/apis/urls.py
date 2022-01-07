@@ -1,5 +1,11 @@
-from django.urls import path, include
+from django.urls import path
+
+from .apis import (
+    PostCommentAPI,
+)
 
 urlpatterns = [
-    # path('api/', include('posts.apis.urls')),
+
+    # comments related
+    path('comments/<pk>', PostCommentAPI.as_view(), name="post-comments"),
 ]

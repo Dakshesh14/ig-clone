@@ -10,8 +10,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include("accounts.urls"), name='accounts'),
 
+    path('post/', include("posts.urls"), name='posts'),
+
     path('', TemplateView.as_view(
-        template_name="frontend/index.html"), name='index'),
+        template_name="frontend/index.html"
+    ), name='index'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
