@@ -70,6 +70,9 @@ class PostSerializer(serializers.ModelSerializer):
             'posted_on',
             'likes',
         )
+        read_only_fields = (
+            'slug',
+        )
 
     def get_likes_count(self, obj):
         return obj.get_likes()
@@ -79,3 +82,9 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_comment_count(self, obj):
         return obj.comments.count()
+
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PostImage
+        fields = "__all__"

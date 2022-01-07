@@ -32,3 +32,8 @@ class PostCommentAdmin(admin.ModelAdmin):
 
     list_display = ('post',)
     list_display_links = ('post',)
+
+
+@admin.register(PostImage)
+class PostImageAdmin(admin.ModelAdmin):
+    pass
