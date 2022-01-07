@@ -1,3 +1,4 @@
+import re
 from rest_framework import serializers
 
 
@@ -55,3 +56,26 @@ class PostCommentSerializer(serializers.ModelSerializer):
         if user and user in obj.likes.all():
             return True
         return False
+
+
+class PostSerializer(serializers.ModelSerializer):
+
+    likes_count = serializers.SerializerMethodField(read_only=True)
+    posted_ago = serializers.SerializerMethodField(read_only=True)
+    comment_count = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Post
+        exclude = (
+            'posted_on',
+            'likes',
+        )
+
+    def get_likes_count(self, obj):
+        return obj.get_likes()
+
+    def get_posted_ago(self, obj):
+        return obj.get_natural_time()
+
+    def get_comment_count(self, obj):
+        return obj.comments.count()

@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.shortcuts import get_object_or_404
 
 from rest_framework import generics
@@ -12,8 +13,14 @@ from posts.models import (
 )
 
 from .serializers import (
+    PostSerializer,
     PostCommentSerializer,
 )
+
+
+class PostAPI(generics.ListCreateAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
 
 
 class PostCommentAPI(generics.ListCreateAPIView):
