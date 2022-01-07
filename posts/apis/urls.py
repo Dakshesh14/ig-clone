@@ -7,5 +7,5 @@ from .apis import (
 urlpatterns = [
 
     # comments related
-    path('comments/<pk>', PostCommentAPI.as_view(), name="post-comments"),
+    path('comments/<slug>', PostCommentAPI.as_view(), name="post-comments"),
 ]

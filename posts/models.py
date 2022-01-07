@@ -9,6 +9,8 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import Resize
 
 
+from utility.helpers import random_string_generator
+
 User = get_user_model()
 
 
@@ -17,6 +19,7 @@ class Post(models.Model):
     A Post may or maynot have comment associated with it, if there's a comment then it will be also ManyToOne relation."""
 
     title = models.CharField(max_length=75)
+    slug = models.SlugField()
     posted_on = models.DateTimeField(auto_now_add=True)
 
     likes = models.ManyToManyField(
@@ -24,6 +27,11 @@ class Post(models.Model):
         related_name='likes',
         blank=True,
     )
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = random_string_generator()
+        super(Post, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Post'

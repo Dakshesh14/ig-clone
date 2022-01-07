@@ -20,6 +20,7 @@ class PostAdmin(admin.ModelAdmin):
 
     list_display = ('title',)
     list_display_links = ('title',)
+    readonly_fields = ('slug',)
     inlines = [
         PostInline,
     ]

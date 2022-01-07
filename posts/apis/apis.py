@@ -22,13 +22,13 @@ class PostCommentAPI(generics.ListCreateAPIView):
     pagination_class = None
 
     def get_queryset(self):
-        pk = self.kwargs.get('pk', None)
-        post_qs = get_object_or_404(Post, pk=pk)
+        slug = self.kwargs.get('slug', None)
+        post_qs = get_object_or_404(Post, slug=slug)
         qs = PostComment.parent_objects.filter(post=post_qs).all()
         return qs
 
-    def post(self, request, pk=None, format=None, *args, **kwargs):
-        post_qs = get_object_or_404(Post, pk=pk)
+    def post(self, request, slug=None, format=None, *args, **kwargs):
+        post_qs = get_object_or_404(Post, slug=slug)
 
         serializer = PostCommentSerializer(data=request.data)
 
@@ -37,7 +37,7 @@ class PostCommentAPI(generics.ListCreateAPIView):
             parent = request.data.get("parent_id")
 
             if parent:
-                parent_qs = get_object_or_404(PostComment, pk=parent)
+                parent_qs = get_object_or_404(PostComment, slug=parent)
             else:
                 parent_qs = None
 
