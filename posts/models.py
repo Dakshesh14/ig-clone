@@ -96,7 +96,7 @@ class PostComment(models.Model):
     def get_comment_replies(self):
         return self.replies
 
-    def get_date(self):
+    def get_post_naturaltime(self):
         return naturaltime(self.posted_on)
 
     def get_likes_count(self):

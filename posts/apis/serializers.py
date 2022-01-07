@@ -16,7 +16,10 @@ class PostCommentSerializer(serializers.ModelSerializer):
         source="get_reply_count",
         read_only=True
     )
-    date = serializers.CharField(source="get_date", read_only=True)
+    post_ago = serializers.CharField(
+        source="get_post_naturaltime",
+        read_only=True
+    )
     replies = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
@@ -24,6 +27,7 @@ class PostCommentSerializer(serializers.ModelSerializer):
         exclude = (
             'post',
             'parent',
+            'posted_on',
         )
         read_only_fields = (
             'is_edited',
