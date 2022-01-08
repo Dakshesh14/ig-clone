@@ -15,9 +15,8 @@ function useFetchPost(query, search) {
         query: query,
       },
     }).then((res) => {
-      console.log(res.data);
       setPosts((prevData) => {
-        return [prevData, ...res.data];
+        return [...prevData, ...res.data];
       });
       setLoading(false);
     });
