@@ -5,9 +5,9 @@ import { NavLink } from "react-router-dom";
 // importing redux related stuff
 import { connect } from "react-redux";
 
-function Navbar({ isAuthenticated }) {
+function Navbar({ isAuthenticated, username }) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <nav className="navbar navbar-expand-lg navbar-light py-4 bg-light">
       <div className="container">
         <NavLink className="navbar-brand" to="/">
           SlowGram
@@ -32,9 +32,23 @@ function Navbar({ isAuthenticated }) {
                 className="nav-link"
                 activeClassName="active"
               >
-                Home
+                <i className="fas fa-home"></i>
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                to="/"
+                exact
+                className="nav-link"
+                activeClassName="active"
+              >
+                <i className="fas fa-search"></i>
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             {isAuthenticated ? (
               <li className="nav-item">
                 <NavLink
@@ -43,32 +57,20 @@ function Navbar({ isAuthenticated }) {
                   className="nav-link"
                   activeClassName="active"
                 >
-                  Logout
+                  {username}
                 </NavLink>
               </li>
             ) : (
-              <>
-                <li className="nav-item">
-                  <NavLink
-                    to="/login"
-                    exact
-                    className="nav-link"
-                    activeClassName="active"
-                  >
-                    Login
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
-                    to="/register"
-                    exact
-                    className="nav-link"
-                    activeClassName="active"
-                  >
-                    Register
-                  </NavLink>
-                </li>
-              </>
+              <li className="nav-item">
+                <NavLink
+                  to="/login"
+                  exact
+                  className="nav-link"
+                  activeClassName="active"
+                >
+                  Login
+                </NavLink>
+              </li>
             )}
           </ul>
         </div>
@@ -79,6 +81,7 @@ function Navbar({ isAuthenticated }) {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.isAuthenticated,
+  username: state.user.username,
 });
 
 export default connect(mapStateToProps, null)(memo(Navbar));
