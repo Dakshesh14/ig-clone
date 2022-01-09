@@ -4,13 +4,13 @@ import React, { memo } from "react";
 import { connect } from "react-redux";
 
 // importing views
-import useFetchPost from "../hooks/useFetchPost";
+import useFetchPosts from "../../hooks/useFetchPosts";
 
 // importing components
 import PostCard from "./PostCard";
 
 function Feed({ user }) {
-  const [loading, posts] = useFetchPost();
+  const [loading, posts] = useFetchPosts();
 
   return (
     <div className="container mt-5 pt-5">

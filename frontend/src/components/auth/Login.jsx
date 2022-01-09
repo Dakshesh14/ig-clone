@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 
 // importing redux related stuff
 import { connect } from "react-redux";
-import { userLoginSuccess, userLogout } from "../store/user/action";
+import { userLoginSuccess, userLogout } from "../../store/user/action";
 
 // importing axios
 import axios from "axios";
@@ -14,10 +14,10 @@ import * as Yup from "yup";
 import { Formik, Form } from "formik";
 
 // importing actions
-import { csrftoken } from "../common/getCsrfToken";
+import { csrftoken } from "../../common/getCsrfToken";
 
 // importing components
-import TextField from "./TextField";
+import TextField from "../../common/TextField";
 
 function Login({ userLoginSuccess, userLogout, ...props }) {
   let history = useHistory();

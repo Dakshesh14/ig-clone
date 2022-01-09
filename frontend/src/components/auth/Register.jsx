@@ -3,21 +3,21 @@ import React, { memo } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 // importing actions
-import { csrftoken } from "../common/getCsrfToken";
+import { csrftoken } from "../../common/getCsrfToken";
 
 // importing axios
 import axios from "axios";
 
 // importing redux related stuff
 import { connect } from "react-redux";
-import { userRegisterSuccess, userLogout } from "../store/user/action";
+import { userRegisterSuccess, userLogout } from "../../store/user/action";
 
 // importing formik and yup for form validation
 import * as Yup from "yup";
 import { FormikProvider, useFormik, Form } from "formik";
 
 // importing components
-import TextField from "./TextField";
+import TextField from "../../common/TextField";
 
 function Register({ userRegisterSuccess, userLogout }) {
   let history = useHistory();

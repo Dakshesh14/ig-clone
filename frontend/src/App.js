@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ProtectRoute from "./common/ProtectRoute";
 
 // importing components
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import PostDetail from "./components/PostDetail";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Logout from "./components/Logout";
+import Navbar from "./components/layouts/Navbar";
+import Home from "./components/layouts/Home";
+import PostDetail from "./components/post/PostDetail";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import Logout from "./components/auth/Logout";
 
 function App() {
   return (

@@ -6,12 +6,13 @@ import { useParams } from "react-router-dom";
 import PostImageCarousel from "./PostImageCarousel";
 
 // importing custom hooks
-import useFetchPostDetail from "../hooks/useFetchPostDetail";
+import useFetchPostDetail from "../../hooks/useFetchPostDetail";
 
 export default memo(function PostDetail() {
   const { slug } = useParams();
 
-  const [loading, { post_images, title }, comments] = useFetchPostDetail(slug);
+  const [loading, { post_images, title, likes_count, liked }] =
+    useFetchPostDetail(slug);
 
   if (loading) {
     return <h2>loading..........</h2>;
@@ -27,12 +28,12 @@ export default memo(function PostDetail() {
         <div className="col-md-6">
           <PostImageCarousel images={post_images} slug={slug} />
           <p>
-            {/* {likes_count}
+            {likes_count}
             {liked ? (
               <i className="fas fa-heart liked"></i>
             ) : (
               <i className="far fa-heart"></i>
-            )} */}
+            )}
           </p>
           <p className="text-muted mt-3">{title}</p>
         </div>
