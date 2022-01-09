@@ -52,7 +52,7 @@ function Navbar({ isAuthenticated, username }) {
             {isAuthenticated ? (
               <li className="nav-item">
                 <NavLink
-                  to="/logout"
+                  to="/auth/logout"
                   exact
                   className="nav-link"
                   activeClassName="active"
@@ -63,7 +63,7 @@ function Navbar({ isAuthenticated, username }) {
             ) : (
               <li className="nav-item">
                 <NavLink
-                  to="/login"
+                  to="/auth/login"
                   exact
                   className="nav-link"
                   activeClassName="active"

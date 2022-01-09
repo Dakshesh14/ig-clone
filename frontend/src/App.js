@@ -19,9 +19,9 @@ function App() {
       <Switch>
         <ProtectRoute exact path="/" component={Home} />
         <ProtectRoute exact path="/post/:slug" component={PostDetail} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/Logout" component={Logout} />
+        <Route exact path="/auth/login" component={Login} />
+        <Route exact path="/auth/register" component={Register} />
+        <Route exact path="/auth/Logout" component={Logout} />
       </Switch>
     </Router>
   );
