@@ -17,6 +17,10 @@ body {
     background-color: $bg-color;
 }
 
+.liked {
+    color: $theme-color;
+}
+
 .navbar {
     .navbar-brand {
         font-family: $merriweather-font;

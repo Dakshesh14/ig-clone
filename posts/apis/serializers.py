@@ -61,8 +61,10 @@ class PostCommentSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
 
     likes_count = serializers.SerializerMethodField(read_only=True)
+    liked = serializers.SerializerMethodField(read_only=True)
     posted_ago = serializers.SerializerMethodField(read_only=True)
     comment_count = serializers.SerializerMethodField(read_only=True)
+    post_images = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Post
@@ -74,6 +76,19 @@ class PostSerializer(serializers.ModelSerializer):
             'slug',
         )
 
+    def get_post_images(self, obj):
+        serializer_context = {'request': self.context.get('request')}
+
+        children = obj.post_images
+        if not children.exists():
+            return None
+        serializered_children = ImageSerializer(
+            children,
+            many=True,
+            context=serializer_context
+        )
+        return serializered_children.data
+
     def get_likes_count(self, obj):
         return obj.get_likes()
 
@@ -82,6 +97,16 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_comment_count(self, obj):
         return obj.comments.count()
+
+    def get_liked(self, obj):
+        request = self.context.get('request')
+        if request:
+            user = request.user
+        else:
+            user = None
+        if user and user in obj.likes.all():
+            return True
+        return False
 
 
 class ImageSerializer(serializers.ModelSerializer):

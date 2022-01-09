@@ -9,6 +9,10 @@ body {
   background-color: #f8f8f8;
 }
 
+.liked {
+  color: #FC5130;
+}
+
 .navbar .navbar-brand {
   font-family: "Merriweather Sans", sans-serif;
 }

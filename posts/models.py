@@ -37,6 +37,9 @@ class Post(models.Model):
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
 
+    # def get_post_images(self):
+    #     return self.posts
+
     def get_natural_time(self):
         return naturaltime(self.posted_on)
 
@@ -51,8 +54,10 @@ class PostImage(models.Model):
     image = ProcessedImageField(
         upload_to="posts",
         format="JPEG",
+        processors=[Resize(700, 700)],
     )
-    post = models.ForeignKey('Post', on_delete=models.CASCADE)
+    post = models.ForeignKey(
+        'Post', on_delete=models.CASCADE, related_name='post_images')
 
     def __str__(self) -> str:
         return self.post.title
@@ -86,7 +91,7 @@ class PostComment(models.Model):
     posted_on = models.DateTimeField(auto_now_add=True)
     is_edited = models.BooleanField(default=False)
 
-    class LectureCommentModelManager(models.Manager):
+    class PostCommentModelManager(models.Manager):
         """Had to make this model manager to get all the comments w/o parent i.e. this is
         a comment in lecture instead of a reply."""
 
@@ -99,7 +104,7 @@ class PostComment(models.Model):
         verbose_name_plural = 'Post Comments'
 
     objects = models.Manager()
-    parent_objects = LectureCommentModelManager()
+    parent_objects = PostCommentModelManager()
 
     def get_comment_replies(self):
         return self.replies
