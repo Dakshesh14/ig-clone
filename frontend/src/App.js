@@ -7,6 +7,7 @@ import ProtectRoute from "./common/ProtectRoute";
 // importing components
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
+import PostDetail from "./components/PostDetail";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Logout from "./components/Logout";
@@ -17,6 +18,7 @@ function App() {
       <Navbar />
       <Switch>
         <ProtectRoute exact path="/" component={Home} />
+        <ProtectRoute exact path="/post/:slug" component={PostDetail} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/Logout" component={Logout} />

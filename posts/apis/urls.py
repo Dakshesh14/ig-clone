@@ -1,9 +1,8 @@
 from django.urls import path
 
-from posts.models import Post
-
 from .apis import (
-    PostAPI,
+    PostsAPI,
+    PostDetailAPI,
     AddPostApi,
     PostCommentAPI,
 )
@@ -11,7 +10,8 @@ from .apis import (
 urlpatterns = [
 
     # posts
-    path('posts', PostAPI.as_view(), name='posts'),
+    path('posts', PostsAPI.as_view(), name='posts'),
+    path('post/<slug>', PostDetailAPI.as_view(), name='post'),
 
     path('add-post', AddPostApi.as_view(), name='add-post'),
 

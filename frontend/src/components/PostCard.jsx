@@ -1,5 +1,10 @@
 import React, { memo, useState } from "react";
 
+import { Link } from "react-router-dom";
+
+// importing components
+import PostImageCarousel from "./PostImageCarousel";
+
 export default memo(function PostCard({
   title,
   likes_count,
@@ -25,18 +30,13 @@ export default memo(function PostCard({
   return (
     <div className="col-md-6 p-2 px-md-4 mb-5">
       <div className="post-card d-flex flex-column">
-        <img
-          src={post_images[0].image}
-          alt={title}
-          className="img-fluid"
-          onDoubleClick={handleLiked}
-        />
+        <PostImageCarousel images={post_images} slug={slug} />
         <div className="post-details-container d-flex justify-content-between align-items-center mt-2 px-2">
           <div>
             <h4 className="m-0">Some user</h4>
             <small className="text-muted m-0">posted {posted_ago}</small>
           </div>
-          <div>
+          <div className="d-flex gap-2">
             <p className="m-0">
               {p_likes}
               {p_liked ? (
@@ -45,8 +45,17 @@ export default memo(function PostCard({
                 <i className="far fa-heart"></i>
               )}
             </p>
+            <p className="m-0">
+              <Link
+                to={"/post/" + slug}
+                className="text-dark text-decoration-none"
+              >
+                {comment_count} <i className="fas fa-comment"></i>
+              </Link>
+            </p>
           </div>
         </div>
+        <p className="text-muted mt-3 px-2">{title}</p>
       </div>
     </div>
   );

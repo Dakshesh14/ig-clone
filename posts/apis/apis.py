@@ -21,9 +21,15 @@ from .serializers import (
 )
 
 
-class PostAPI(generics.ListAPIView):
+class PostsAPI(generics.ListAPIView):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
+
+
+class PostDetailAPI(generics.RetrieveAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    lookup_field = 'slug'
 
 
 class AddPostApi(APIView):
