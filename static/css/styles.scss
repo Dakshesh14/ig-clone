@@ -1,1 +1,18 @@
 @import './utility';
+.post-comment-section {
+    .comment-list {
+        margin-top: 2.5rem;
+    }
+    blockquote {
+        background-color: $overlay-color;
+        border-left: 5px solid $theme-color;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        @media screen and (min-width: 520px) {
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+        }
+    }
+}

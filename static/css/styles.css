@@ -16,4 +16,24 @@ body {
 .navbar .navbar-brand {
   font-family: "Merriweather Sans", sans-serif;
 }
+
+.post-comment-section .comment-list {
+  margin-top: 2.5rem;
+}
+
+.post-comment-section blockquote {
+  background-color: #FFFFFF;
+  border-left: 5px solid #FC5130;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+@media screen and (min-width: 520px) {
+  .post-comment-section blockquote {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
 /*# sourceMappingURL=styles.css.map */
