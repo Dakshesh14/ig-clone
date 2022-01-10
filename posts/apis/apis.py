@@ -83,6 +83,7 @@ class PostCommentAPI(generics.ListCreateAPIView):
                 parent_qs = None
 
             instance = serializer.save(
+                user=self.request.user,
                 content=content,
                 parent=parent_qs,
                 post=post_qs,

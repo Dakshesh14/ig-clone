@@ -66,7 +66,12 @@ class PostImage(models.Model):
 class PostComment(models.Model):
     """This model is for comment in post model. This comment will also have a parent of self if there's any parent comment."""
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
     content = models.CharField(max_length=255)
 
     post = models.ForeignKey(
