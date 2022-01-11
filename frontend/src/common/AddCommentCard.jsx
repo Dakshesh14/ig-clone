@@ -26,8 +26,9 @@ export default memo(function AddCommentCard({
           className="btn btn-dark"
           type="button"
           disabled={comment.length < 1}
-          onClick={() => {
-            useAddPostComment(postSlug, comment, parentId);
+          onClick={async () => {
+            const some = await useAddPostComment(postSlug, comment, parentId);
+            console.log(some);
           }}
         >
           <i className="fas fa-paper-plane"></i>
