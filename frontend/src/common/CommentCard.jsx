@@ -12,8 +12,10 @@ export default memo(function CommentCard({
   replies,
   content,
   is_edited,
+  postSlug,
 }) {
   const [addComment, setAddComment] = useState(false);
+
   return (
     <blockquote>
       <h5 className="m-0">Some user</h5>
@@ -47,13 +49,16 @@ export default memo(function CommentCard({
         )}
         {addComment ? (
           <AddCommentCard
+            parentId={id}
+            postSlug={postSlug}
             setAddComment={setAddComment}
-            addComment={addComment}
           />
         ) : null}
         <div className="collapse mt-2" id={"collapse" + id}>
           {replies &&
-            replies.map((reply) => <CommentCard key={reply.id} {...reply} />)}
+            replies.map((reply) => (
+              <CommentCard key={reply.id} {...reply} postSlug={postSlug} />
+            ))}
         </div>
       </div>
     </blockquote>

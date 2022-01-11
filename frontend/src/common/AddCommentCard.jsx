@@ -1,6 +1,15 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 
-export default memo(function AddCommentCard({ setAddComment, addComment }) {
+// importing hooks
+import useAddPostComment from "../hooks/useAddPostComment";
+
+export default memo(function AddCommentCard({
+  setAddComment,
+  postSlug,
+  parentId,
+}) {
+  const [comment, setComment] = useState("");
+
   return (
     <div className="add-comment-card">
       <div className="mt-2 d-flex">
@@ -8,8 +17,19 @@ export default memo(function AddCommentCard({ setAddComment, addComment }) {
           type="text"
           placeholder="Add reply"
           className="form-control form-control-sm"
+          value={comment}
+          onChange={(e) => {
+            setComment(e.target.value);
+          }}
         />
-        <button className="btn btn-dark">
+        <button
+          className="btn btn-dark"
+          type="button"
+          disabled={comment.length < 1}
+          onClick={() => {
+            useAddPostComment(postSlug, comment, parentId);
+          }}
+        >
           <i className="fas fa-paper-plane"></i>
         </button>
       </div>

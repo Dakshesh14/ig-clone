@@ -20,9 +20,9 @@ export default memo(function PostComments({ slug }) {
     <div className="post-comment-section">
       <div className="comment-list">
         <h4 className="mb-3">Comments({comments.length})</h4>
-        {comments.length - 1 > 0 ? (
+        {comments.length > 0 ? (
           comments.map((comment) => (
-            <CommentCard {...comment} key={comment.id} />
+            <CommentCard {...comment} key={comment.id} postSlug={slug} />
           ))
         ) : (
           <p className="text-muted">No comment has been added yet!</p>
@@ -40,6 +40,7 @@ export default memo(function PostComments({ slug }) {
           <button
             className="btn btn-dark"
             type="button"
+            disabled={comment.length < 3}
             onClick={() => {
               useAddPostComment(slug, comment, null);
             }}

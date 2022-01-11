@@ -78,7 +78,7 @@ class PostCommentAPI(generics.ListCreateAPIView):
             parent = request.data.get("parent_id")
 
             if parent:
-                parent_qs = get_object_or_404(PostComment, slug=parent)
+                parent_qs = get_object_or_404(PostComment, pk=parent)
             else:
                 parent_qs = None
 

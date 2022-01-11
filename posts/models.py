@@ -57,7 +57,10 @@ class PostImage(models.Model):
         processors=[Resize(700, 700)],
     )
     post = models.ForeignKey(
-        'Post', on_delete=models.CASCADE, related_name='post_images')
+        'Post',
+        on_delete=models.CASCADE,
+        related_name='post_images'
+    )
 
     def __str__(self) -> str:
         return self.post.title

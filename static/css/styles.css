@@ -29,11 +29,4 @@ body {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-
-@media screen and (min-width: 520px) {
-  .post-comment-section blockquote {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-}
 /*# sourceMappingURL=styles.css.map */
