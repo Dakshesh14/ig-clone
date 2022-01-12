@@ -112,4 +112,8 @@ class PostSerializer(serializers.ModelSerializer):
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostImage
-        fields = "__all__"
+        fields = (
+            'id',
+            'post',
+            'image'
+        )

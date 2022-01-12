@@ -37,6 +37,16 @@ function Navbar({ isAuthenticated, username }) {
             </li>
             <li className="nav-item">
               <NavLink
+                to="/add-post"
+                exact
+                className="nav-link"
+                activeClassName="active"
+              >
+                <i className="fas fa-plus"></i>
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
                 to="/"
                 exact
                 className="nav-link"

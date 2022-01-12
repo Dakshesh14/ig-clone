@@ -103,7 +103,7 @@ function Register({ userRegisterSuccess, userLogout }) {
               />
               <p className="text-muted">
                 Already have an account?
-                <Link to="/login" className="ms-1">
+                <Link to="/auth/login" className="ms-1">
                   Login
                 </Link>
               </p>

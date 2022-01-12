@@ -36,6 +36,26 @@ export default memo(function PostDetail() {
         </div>
         <div className="col-md-6">
           <PostComments slug={slug} />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
       </div>
     </div>

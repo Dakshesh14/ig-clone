@@ -52,7 +52,7 @@ class Post(models.Model):
 
 class PostImage(models.Model):
     image = ProcessedImageField(
-        upload_to="posts",
+        upload_to="posts/%Y/%m/%d",
         format="JPEG",
         processors=[Resize(700, 700)],
     )

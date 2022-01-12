@@ -8,7 +8,7 @@ export default memo(function PostImageCarousel({ images, slug }) {
   return (
     <div
       id={"carousel" + slug}
-      className="carousel slide"
+      className="carousel slide post-carousel-card"
       data-bs-ride="carousel"
       data-bs-interval="false"
       onDoubleClick={handleDoubleClick}

@@ -1,7 +1,8 @@
-from django.db.models import query
+from django.db.models.fields import files
 from django.shortcuts import get_object_or_404
 
 from rest_framework import generics
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
@@ -34,10 +35,15 @@ class PostDetailAPI(generics.RetrieveAPIView):
 
 class AddPostApi(APIView):
 
+    parser_classes = (MultiPartParser, FormParser)
+
     def post(self, request, *args, **kwargs):
+
         title = request.data['title']
         post_dict = {'title': title}
         post_serializer = PostSerializer(data=post_dict)
+
+        # print(f"\n\n\{type(request.data['images'][0])}\n\n")
 
         if post_serializer.is_valid():
             post = post_serializer.save()
@@ -46,11 +52,24 @@ class AddPostApi(APIView):
 
         images = request.data['images']
 
-        for image in images:
-            data = {'image': image, 'post': post}
-            file_serializer = ImageSerializer(data=data)
-            if file_serializer.is_valid():
-                file_serializer.save()
+        print(f"\n\n{images}\n\n")
+
+        data = {'image': images, 'post': post.pk}
+        file_serializer = ImageSerializer(data=data)
+        if file_serializer.is_valid():
+            file_serializer.save()
+        else:
+            post.delete()
+            return Response(data=file_serializer.errors, status=HTTP_400_BAD_REQUEST)
+        # for image in images:
+        #     print(image)
+        #     data = {'image': image, 'post': post.pk}
+        #     file_serializer = ImageSerializer(data=data)
+        #     if file_serializer.is_valid():
+        #         file_serializer.save()
+        #     else:
+        #         post.delete()
+        #         return Response(data=file_serializer.errors, status=HTTP_400_BAD_REQUEST)
 
         return Response(data={
             "message": "Post created successfully."

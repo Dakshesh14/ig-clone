@@ -89,7 +89,7 @@ function Login({ userLoginSuccess, userLogout, ...props }) {
                 )}
                 <p className="text-muted">
                   Don't have an account?
-                  <Link to="/register" className="ms-1">
+                  <Link to="/auth/register" className="ms-1">
                     Register
                   </Link>
                 </p>

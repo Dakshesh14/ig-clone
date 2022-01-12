@@ -17,7 +17,7 @@ function Logout({ userLogout }) {
         <h2>You have been logout</h2>
         <hr />
         <p className="text-muted">
-          You have been logout. <Link to="/login">Login back.</Link>
+          You have been logout. <Link to="/auth/login">Login back.</Link>
         </p>
       </div>
     </div>
