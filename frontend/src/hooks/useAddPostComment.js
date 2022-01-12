@@ -11,7 +11,7 @@ const useAddPostComment = async (slug, comment, parentId) => {
   try {
     const response = await axios({
       method: "POST",
-      url: `../post/api/comments/${slug}a`,
+      url: `../post/api/comments/${slug}`,
       data: {
         content: comment,
         parent_id: parentId ? parentId : null,
