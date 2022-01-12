@@ -5,7 +5,7 @@ import useAddPost from "../../hooks/useAddPost";
 
 export default memo(function AddPost() {
   const [formData, setFormData] = useState({
-    title: "for testing bro",
+    title: "",
     images: [],
   });
 
