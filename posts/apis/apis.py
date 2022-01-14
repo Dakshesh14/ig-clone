@@ -35,7 +35,7 @@ class PostDetailAPI(generics.RetrieveAPIView):
 
 class AddPostApi(APIView):
 
-    # parser_classes = (MultiPartParser, FormParser)
+    parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request, *args, **kwargs):
 
@@ -50,17 +50,26 @@ class AddPostApi(APIView):
         else:
             return Response(post_serializer.errors, status=HTTP_400_BAD_REQUEST)
 
-        images = request.FILES
-        images = images.getlist('images')
+        images = request.data['images']
 
-        for image in images:
-            data = {'image': image, 'post': post.pk}
-            file_serializer = ImageSerializer(data=data)
-            if file_serializer.is_valid():
-                file_serializer.save()
-            else:
-                post.delete()
-                return Response(data=file_serializer.errors, status=HTTP_400_BAD_REQUEST)
+        print(f"\n\n{images}\n\n")
+
+        data = {'image': images, 'post': post.pk}
+        file_serializer = ImageSerializer(data=data)
+        if file_serializer.is_valid():
+            file_serializer.save()
+        else:
+            post.delete()
+            return Response(data=file_serializer.errors, status=HTTP_400_BAD_REQUEST)
+        # for image in images:
+        #     print(image)
+        #     data = {'image': image, 'post': post.pk}
+        #     file_serializer = ImageSerializer(data=data)
+        #     if file_serializer.is_valid():
+        #         file_serializer.save()
+        #     else:
+        #         post.delete()
+        #         return Response(data=file_serializer.errors, status=HTTP_400_BAD_REQUEST)
 
         return Response(data={
             "message": "Post created successfully."

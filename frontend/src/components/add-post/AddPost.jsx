@@ -12,7 +12,7 @@ import TextField from "../../common/TextField";
 
 export default memo(function AddPost() {
   const [formData, setFormData] = useState({
-    title: "",
+    title: "for testing bro",
     images: [],
   });
 
