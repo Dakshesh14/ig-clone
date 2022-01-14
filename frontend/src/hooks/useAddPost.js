@@ -12,7 +12,6 @@ const useAddPost = async (formData) => {
 
   var data = {
     data: null,
-    error: null,
     status: 200,
   };
 
@@ -25,14 +24,13 @@ const useAddPost = async (formData) => {
       headers: {
         "X-CSRFToken": csrftoken,
         "Content-Type": "multipart/form-data",
-        // accept: "application/json",
+        accept: "application/json",
       },
     });
 
     data.data = await response.data;
     data.status = response.status;
   } catch (error) {
-    data.error = await error.response.data.detail;
     data.status = await error.response.status;
   } finally {
     return data;

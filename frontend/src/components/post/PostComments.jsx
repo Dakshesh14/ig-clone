@@ -14,7 +14,7 @@ export default memo(function PostComments({ slug }) {
 
   const handleClick = async () => {
     const response = await useAddPostComment(slug, comment, null);
-    console.log(response);
+
     if (response.status >= 400) {
       Swal.fire({
         icon: "error",

@@ -1,17 +1,42 @@
 import React, { memo, useState } from "react";
+import { useHistory } from "react-router-dom";
+
+// importing components
+import Swal from "sweetalert2";
 
 // importing actions
 import useAddPost from "../../hooks/useAddPost";
 
 export default memo(function AddPost() {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     title: "",
     images: [],
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    useAddPost(formData);
+    const response = await useAddPost(formData);
+
+    if (response.status >= 400) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Post can't be added this could be because you didn't add title or image.",
+      });
+    } else {
+      // if success then push to home page
+      Swal.fire({
+        icon: "success",
+        title: "Post added!",
+        text: `Your post has been successfully created!`,
+        confirmButtonText: "Save",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          history.push("/");
+        }
+      });
+    }
   };
 
   return (
