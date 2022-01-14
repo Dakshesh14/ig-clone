@@ -2,6 +2,13 @@ import React, { memo, useState } from "react";
 
 // importing actions
 import useAddPost from "../../hooks/useAddPost";
+import validator from "../../validators/addPostValidator";
+
+// importing Formik
+import { Formik, Form, FieldArray, Field } from "formik";
+
+// importing components
+import TextField from "../../common/TextField";
 
 export default memo(function AddPost() {
   const [formData, setFormData] = useState({
@@ -21,7 +28,40 @@ export default memo(function AddPost() {
           <h2>Have something to share?</h2>
         </div>
         <div className="col-md-6">
-          <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <Formik
+            initialValues={{
+              title: "some long ass title",
+              images: [],
+            }}
+            validationSchema={validator}
+            onSubmit={(values) => {
+              console.log(values);
+            }}
+            render={({ values, setFieldValue }) => (
+              <Form>
+                <TextField
+                  label="Title"
+                  name="title"
+                  type="text"
+                  autoComplete="off"
+                ></TextField>
+                <TextField
+                  multiple
+                  label="Images"
+                  name="images"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    setFieldValue("images", e.currentTarget.files[0]);
+                  }}
+                ></TextField>
+                <button className="btn btn-dark" type="submit">
+                  Post
+                </button>
+              </Form>
+            )}
+          />
+          {/* <form onSubmit={handleSubmit} encType="multipart/form-data">
             <div className="mb-3">
               <label htmlFor="text" className="form-label">
                 Title
@@ -65,7 +105,7 @@ export default memo(function AddPost() {
             <button type="submit" className="btn btn-dark">
               Add Post
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </div>
