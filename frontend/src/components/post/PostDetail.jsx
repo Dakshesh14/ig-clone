@@ -22,7 +22,7 @@ export default memo(function PostDetail() {
   return (
     <div className="container">
       <div className="row mt-5 pt-5">
-        <div className="col-md-6">
+        <div className="col-md-6 post-detail">
           <PostImageCarousel images={post_images} slug={slug} />
           <p className="float-md-end mt-2">
             {likes_count}

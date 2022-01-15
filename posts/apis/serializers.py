@@ -76,7 +76,7 @@ class PostSerializer(serializers.ModelSerializer):
         exclude = (
             'posted_on',
             'likes',
-            'user',
+            # 'user',
         )
         read_only_fields = (
             'slug',
@@ -123,5 +123,6 @@ class ImageSerializer(serializers.ModelSerializer):
         model = PostImage
         fields = (
             'id',
+            'post',
             'image'
         )

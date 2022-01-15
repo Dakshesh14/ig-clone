@@ -25,6 +25,7 @@ const useAddPostComment = async (slug, comment, parentId) => {
     data.data = await response.data;
     data.status = response.status;
   } catch (error) {
+    console.log(error.response.data);
     data.error = await error.response.data.detail;
     data.status = await error.response.status;
   } finally {

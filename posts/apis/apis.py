@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.shortcuts import get_object_or_404
 
 from rest_framework import generics
@@ -35,7 +36,7 @@ class AddPostApi(APIView):
     def post(self, request, *args, **kwargs):
 
         title = request.data['title']
-        post_dict = {'title': title}
+        post_dict = {'title': title, 'user': self.request.user.id}
         post_serializer = PostSerializer(data=post_dict)
 
         if post_serializer.is_valid():
@@ -73,6 +74,8 @@ class PostCommentAPI(generics.ListCreateAPIView):
 
     def post(self, request, slug=None, format=None, *args, **kwargs):
         post_qs = get_object_or_404(Post, slug=slug)
+
+        print(request.data)
 
         serializer = PostCommentSerializer(data=request.data)
 
