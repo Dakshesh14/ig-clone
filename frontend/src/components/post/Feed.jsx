@@ -20,16 +20,9 @@ function Feed({ user }) {
             <h1>loading.........</h1>
           ) : (
             <div className="d-flex flex-wrap justify-content-between">
-              {posts.length > 0 ? (
-                posts.map((post) => <PostCard {...post} key={post.slug} />)
-              ) : (
-                <>
-                  <div>
-                    <h1>No post found!</h1>
-                    <p className="text-muted">No post has been added yet</p>
-                  </div>
-                </>
-              )}
+              {posts.map((post) => (
+                <PostCard {...post} key={post.slug} />
+              ))}
             </div>
           )}
         </div>

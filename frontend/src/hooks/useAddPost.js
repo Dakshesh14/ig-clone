@@ -1,4 +1,6 @@
 import axios from "axios";
+
+// importing actions
 import { csrftoken } from "../common/getCsrfToken";
 
 const useAddPost = async (formData) => {
@@ -27,10 +29,11 @@ const useAddPost = async (formData) => {
         accept: "application/json",
       },
     });
-
+    console.log(response);
     data.data = await response.data;
     data.status = response.status;
   } catch (error) {
+    data.error = await error.response.data;
     data.status = await error.response.status;
   } finally {
     return data;

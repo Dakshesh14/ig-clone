@@ -20,7 +20,7 @@ export default memo(function PostDetail() {
   }
 
   return (
-    <div className="container post-detail">
+    <div className="container">
       <div className="row mt-5 pt-5">
         <div className="col-md-6">
           <PostImageCarousel images={post_images} slug={slug} />

@@ -10,7 +10,7 @@ import useAddPost from "../../hooks/useAddPost";
 export default memo(function AddPost() {
   const history = useHistory();
   const [formData, setFormData] = useState({
-    title: "",
+    title: "for testing bro",
     images: [],
   });
 
