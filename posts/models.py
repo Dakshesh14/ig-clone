@@ -18,6 +18,11 @@ class Post(models.Model):
     """This is the post model. Each post will have one or more pic associated with it. Pic will be linked using ManyToOne relation.
     A Post may or maynot have comment associated with it, if there's a comment then it will be also ManyToOne relation."""
 
+    user = models.ForeignKey(
+        User,
+        related_name='author',
+        on_delete=models.CASCADE,
+    )
     title = models.CharField(max_length=75)
     slug = models.SlugField()
     posted_on = models.DateTimeField(auto_now_add=True)
@@ -36,9 +41,6 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
-
-    # def get_post_images(self):
-    #     return self.posts
 
     def get_natural_time(self):
         return naturaltime(self.posted_on)

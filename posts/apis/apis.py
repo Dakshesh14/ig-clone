@@ -1,8 +1,6 @@
-from django.db.models.fields import files
 from django.shortcuts import get_object_or_404
 
 from rest_framework import generics
-from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
@@ -11,7 +9,6 @@ from rest_framework.permissions import AllowAny
 
 from posts.models import (
     Post,
-    PostImage,
     PostComment,
 )
 
@@ -35,15 +32,11 @@ class PostDetailAPI(generics.RetrieveAPIView):
 
 class AddPostApi(APIView):
 
-    # parser_classes = (MultiPartParser, FormParser)
-
     def post(self, request, *args, **kwargs):
 
         title = request.data['title']
         post_dict = {'title': title}
         post_serializer = PostSerializer(data=post_dict)
-
-        # print(f"\n\n\{type(request.data['images'][0])}\n\n")
 
         if post_serializer.is_valid():
             post = post_serializer.save()

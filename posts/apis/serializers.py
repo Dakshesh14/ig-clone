@@ -1,4 +1,3 @@
-import re
 from rest_framework import serializers
 
 
@@ -22,6 +21,7 @@ class PostCommentSerializer(serializers.ModelSerializer):
         read_only=True
     )
     replies = serializers.SerializerMethodField(read_only=True)
+    username = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = PostComment
@@ -29,10 +29,14 @@ class PostCommentSerializer(serializers.ModelSerializer):
             'post',
             'parent',
             'posted_on',
+            'user',
         )
         read_only_fields = (
             'is_edited',
         )
+
+    def get_username(self, obj):
+        return obj.user.username
 
     def get_replies(self, obj):
         serializer_context = {'request': self.context.get('request')}
@@ -65,12 +69,14 @@ class PostSerializer(serializers.ModelSerializer):
     posted_ago = serializers.SerializerMethodField(read_only=True)
     comment_count = serializers.SerializerMethodField(read_only=True)
     post_images = serializers.SerializerMethodField(read_only=True)
+    username = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Post
         exclude = (
             'posted_on',
             'likes',
+            'user',
         )
         read_only_fields = (
             'slug',
@@ -88,6 +94,9 @@ class PostSerializer(serializers.ModelSerializer):
             context=serializer_context
         )
         return serializered_children.data
+
+    def get_username(self, obj):
+        return obj.user.username
 
     def get_likes_count(self, obj):
         return obj.get_likes()
@@ -114,6 +123,5 @@ class ImageSerializer(serializers.ModelSerializer):
         model = PostImage
         fields = (
             'id',
-            'post',
             'image'
         )
