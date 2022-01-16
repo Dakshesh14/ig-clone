@@ -13,6 +13,7 @@ export default memo(function PostCard({
   post_images,
   comment_count,
   posted_ago,
+  username,
 }) {
   const [p_liked, setLiked] = useState(liked);
   const [p_likes, setLikes] = useState(likes_count);
@@ -33,7 +34,12 @@ export default memo(function PostCard({
         <PostImageCarousel images={post_images} slug={slug} />
         <div className="post-details-container d-flex justify-content-between align-items-center mt-2 px-2">
           <div>
-            <h4 className="m-0">Some user</h4>
+            <Link
+              to={"/user/" + username}
+              className="text-decoration-none text-dark"
+            >
+              <h4 className="m-0">{username}</h4>
+            </Link>
             <small className="text-muted m-0">posted {posted_ago}</small>
           </div>
           <div className="d-flex gap-2">
