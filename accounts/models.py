@@ -1,4 +1,3 @@
-from statistics import mode
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -8,7 +7,7 @@ User = get_user_model()
 
 class UserProfile(models.Model):
     """This is user profile model. This will have two user foreign key,we will make it unique togother, i.e.
-    a user can't follow themselves."""
+    a user can't follow same user twice."""
 
     user = models.ForeignKey(
         User,
@@ -24,7 +23,7 @@ class UserProfile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        # this will ensure no user can follow themselves
+        # this will ensure no user can follow same user twice
         unique_together = ('user', 'following_user',)
 
         verbose_name = 'User Profile'
