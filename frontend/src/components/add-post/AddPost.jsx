@@ -10,7 +10,7 @@ import useAddPost from "../../hooks/useAddPost";
 export default memo(function AddPost() {
   const history = useHistory();
   const [formData, setFormData] = useState({
-    title: "for testing bro",
+    title: "",
     images: [],
   });
 
@@ -54,6 +54,7 @@ export default memo(function AddPost() {
               <input
                 type="text"
                 className="form-control"
+                placeholder="Add some title here"
                 id="text"
                 value={formData.title}
                 onChange={(e) => {
